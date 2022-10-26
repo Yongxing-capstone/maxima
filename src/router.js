@@ -1,7 +1,7 @@
 
 import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 
-import hello from "@/components/Home.vue"
+import hello from "@/components/HomePage.vue"
 
 
 const router = createRouter({

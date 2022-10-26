@@ -1,13 +1,11 @@
 <template>
   <div class="body">
     <header-temp class="fixedTop"></header-temp>
-    <div class="box"></div>
-    <router-view></router-view>
-    <div class="container">1 2 3</div>
+
+    <div class="container"><router-view></router-view></div>
     <footer-temp></footer-temp>
   </div>
 </template>
-
 <script>
 import headerTemp from "./assets/header.vue";
 import footerTemp from "./assets/footer.vue";
@@ -32,13 +30,13 @@ export default {
   height: 1300px;
   width: 90%;
   margin: auto;
-  background-color: #2c3e50;
+  background-color: rgb(248, 249, 250);
 }
 .box {
   height: 122px;
   /* background: black; */
 }
-.fixedTop {
+/* .fixedTop {
   position: fixed;
   width: 80%;
   left: 10%;
@@ -47,5 +45,5 @@ export default {
   height: auto;
   overflow-y: auto;
   min-height: 60px;
-}
+} */
 </style>
