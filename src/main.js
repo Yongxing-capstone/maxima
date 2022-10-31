@@ -7,7 +7,9 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import axios from "axios"
 import global from './assets/Global'
-
+import Vue3Storage from 'vue3-storage'
+import { AES_Encrypt,AES_Decrypt } from './assets/secret'
+import store from './assets/base'
 
 const app = createApp(App)
 app.use(router)
@@ -15,8 +17,17 @@ app.use(ElementPlus)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+app.use(Vue3Storage)
+app.use(store)
+
 axios.defaults.baseURL = global.serverAdrr
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-app.config.globalProperties.$http = axios
+app.config.globalProperties.$axios = axios
+app.config.globalProperties.$store = store
+
+app.config.globalProperties.$AES_Encrypt = AES_Encrypt //global encrypt
+app.config.globalProperties.$AES_Decrypt = AES_Decrypt //global decrypt
+
+
 
 app.mount('#app')

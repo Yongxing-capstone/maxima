@@ -27,23 +27,14 @@ export default {
   margin: auto;
 }
 .container {
-  height: 1300px;
+  /* height: 1300px; */
   width: 90%;
   margin: auto;
   background-color: rgb(248, 249, 250);
 }
 .box {
   height: 122px;
-  /* background: black; */
+  
 }
-/* .fixedTop {
-  position: fixed;
-  width: 80%;
-  left: 10%;
-  top: 0;
-  margin: 0 auto;
-  height: auto;
-  overflow-y: auto;
-  min-height: 60px;
-} */
+
 </style>
