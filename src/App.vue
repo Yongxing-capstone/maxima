@@ -18,6 +18,7 @@ export default {
 <style scoped>
 .body {
   width: 90%;
+  margin: auto;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -27,7 +28,6 @@ export default {
   margin: auto;
 }
 .container {
-  /* height: 1300px; */
   width: 90%;
   margin: auto;
   background-color: rgb(248, 249, 250);

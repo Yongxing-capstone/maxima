@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 .body {
-  background-color: #0050ef;
+  background-color: #0050ef !important;
 }
 .footer {
   display: grid;
