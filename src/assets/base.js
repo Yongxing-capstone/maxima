@@ -1,15 +1,22 @@
 import { createStore } from "vuex";
-
+function storeLocal(state) {
+    window.localStorage.setItem("localData", JSON.stringify(state))
+}
 const store = createStore({
     state() {
         return {
-            signinResult: {}
+            signinResult: {},
+            isLogin: false,
         }
     },
     mutations: {
         getResult(state, result) {
             state.signinResult = result
-            console.log(result);
+            storeLocal(state)
+        },
+        userStage(state, flag) {
+            state.isLogin = flag
+            storeLocal(state)
         }
     }
 })

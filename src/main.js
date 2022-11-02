@@ -7,8 +7,7 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import axios from "axios"
 import global from './assets/Global'
-import Vue3Storage from 'vue3-storage'
-import { AES_Encrypt,AES_Decrypt } from './assets/secret'
+import { AES_Encrypt, AES_Decrypt } from './assets/secret'
 import store from './assets/base'
 
 const app = createApp(App)
@@ -17,7 +16,6 @@ app.use(ElementPlus)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
-app.use(Vue3Storage)
 app.use(store)
 
 axios.defaults.baseURL = global.serverAdrr
@@ -28,6 +26,25 @@ app.config.globalProperties.$store = store
 app.config.globalProperties.$AES_Encrypt = AES_Encrypt //global encrypt
 app.config.globalProperties.$AES_Decrypt = AES_Decrypt //global decrypt
 
-
-
+router.beforeEach((to, from, next) => {
+    // get login stage
+    let isLogIn = store.state.isLogin
+    console.log(isLogIn);
+    if (isLogIn) {
+        //already login 
+        if (to.name === "login") {
+            next({ path: '/' })
+            console.log("already log in");
+        }
+        else {
+            next()
+        }
+    } else {
+        if (to.meta.isLogIn) {
+            next({ path: "/logIn" })
+        } else {
+            next()
+        }
+    }
+})
 app.mount('#app')

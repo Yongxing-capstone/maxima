@@ -207,6 +207,10 @@ export default {
         url: "login",
         data: reqBody,
       });
+      if (result.data.code == 200) {
+        this.$store.commit("userStage", true);
+        this.$router.push("/profile");
+      }
       console.log(result, "result");
     },
   },

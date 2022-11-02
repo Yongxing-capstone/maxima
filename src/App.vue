@@ -12,6 +12,10 @@ import footerTemp from "./assets/footer.vue";
 export default {
   name: "App",
   components: { headerTemp, footerTemp },
+  created() {
+    localStorage.getItem("localData") && this.$store.replaceState(JSON.parse(localStorage.getItem("localData")));
+    console.log(localStorage.getItem("localData"));
+  },
 };
 </script>
 
@@ -34,7 +38,5 @@ export default {
 }
 .box {
   height: 122px;
-  
 }
-
 </style>
