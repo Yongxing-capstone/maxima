@@ -29,7 +29,7 @@ app.config.globalProperties.$AES_Decrypt = AES_Decrypt //global decrypt
 router.beforeEach((to, from, next) => {
     // get login stage
     let isLogIn = store.state.isLogin
-    console.log(isLogIn);
+    console.log("login stage", store.state.isLogin);
     if (isLogIn) {
         //already login 
         if (to.name === "login") {

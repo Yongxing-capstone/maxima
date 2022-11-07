@@ -9,12 +9,15 @@
 <script>
 import headerTemp from "./assets/header.vue";
 import footerTemp from "./assets/footer.vue";
+import global from "./assets/Global";
 export default {
   name: "App",
   components: { headerTemp, footerTemp },
   created() {
-    localStorage.getItem("localData") && this.$store.replaceState(JSON.parse(localStorage.getItem("localData")));
-    console.log(localStorage.getItem("localData"));
+    localStorage.getItem("localData") &&
+      this.$store.replaceState(JSON.parse(localStorage.getItem("localData")));
+    global.isLogIn = this.$store.state.isLogin;
+    // console.log(localStorage.getItem("localData"));
   },
 };
 </script>

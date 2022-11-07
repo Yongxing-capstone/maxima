@@ -19,20 +19,53 @@
           >Order</router-link
         >
         <router-link class="navItem" active-class="navActive" to="/login"
-          >Login/Sign up</router-link
+          >Log in</router-link
         >
         <router-link class="navItem" active-class="navActive" to="/profile"
           >Profile</router-link
         >
+        <el-button :type="btnType" @click="btnHandle">
+          {{ isLogin ? "Log out" : "Sign in/Log in" }}
+        </el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import global from "./Global.js";
 export default {
   name: "headerTemp",
   components: {},
+  data() {
+    return {
+      isLogin: global.isLogIn,
+    };
+  },
+  computed: {
+    btnType() {
+      return this.isLogin ? "warning" : "success";
+    },
+  },
+  methods: {
+    btnHandle() {
+      window.localStorage.clear();
+      this.$store.commit("clearAll");
+      console.log(this.isLogin, "btn handle");
+      if (this.isLogin) {
+        // log out
+        this.$router.push("/");
+        window.location.reload();
+        global.isLogIn = false;
+      } else {
+        this.$router.push("/login");
+      }
+    },
+  },
+  updated() {},
+  created() {
+    console.log(global, "???");
+  },
 };
 </script>
 

@@ -89,7 +89,6 @@ export default {
     const isAlpha = (str) => /[A-Za-z]+/i.test(str);
     const isDigit = (str) => /[\d]+/i.test(str);
     var valiDataPass = (rule, value, callback) => {
-      console.log(value);
       if (value === "") {
         callback(new Error("Please enter your password"));
       } else {
@@ -180,7 +179,6 @@ export default {
         alert(result.data.message);
       } else {
         this.$store.commit("getResult", result.data);
-
         this.$router.push({
           name: "loginResult",
         });
@@ -209,8 +207,13 @@ export default {
       });
       if (result.data.code == 200) {
         this.$store.commit("userStage", true);
-        this.$store.commit("signUserData",result.data.data)
-        this.$router.push("/profile");
+        this.$store.commit("signUserData", result.data.data);
+
+        global.isLogIn = true;
+
+        location.reload();
+      } else {
+        alert(result.data.message);
       }
       console.log(result, "result");
     },
