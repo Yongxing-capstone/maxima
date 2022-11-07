@@ -49,7 +49,7 @@
         <el-form-item label="New Password" prop="newPass">
           <el-input v-model="updatePass.newPass" />
         </el-form-item>
-        <el-form-item label="Confirm password" prop="newPass">
+        <el-form-item label="Confirm password" prop="comPass">
           <el-input v-model="updatePass.comPass" />
         </el-form-item>
         <el-form-item>
@@ -156,8 +156,29 @@ export default {
         _this.imgsrc = url;
       });
     },
-    changePass() {
-      console.log(this.$store.state.userData);
+    async changePass() {
+      if (this.updatePass.comPass != this.updatePass.newPass) {
+        alert("Pleas comfilm you new password");
+      } else {
+        let reqBody = {
+          user_id: this.$store.state.userData.user_id,
+          password: this.$AES_Encrypt(this.updatePass.oldPass),
+          newPass: this.$AES_Encrypt(this.updatePass.newPass),
+        };
+
+        let result = await this.$axios({
+          method: "post",
+          url: "updatePass",
+          data: reqBody,
+        });
+        if (result.data.code == 200) {
+          alert(result.data.message);
+        } else {
+          alert(result.data.message);
+        }
+        // reflash page
+        window.location.assign(location.href);
+      }
     },
     cloneObj(data) {
       let tmp = {};
@@ -183,10 +204,15 @@ export default {
   border: 1px solid black;
   border-radius: 25px;
   padding: 20px;
+  margin-bottom: 5%;
 }
 .icon {
   width: 100px;
+
   margin: auto;
+}
+.Image {
+  margin-top: 5%;
 }
 #name {
   text-align: center;
