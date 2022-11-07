@@ -7,6 +7,7 @@ const store = createStore({
         return {
             signinResult: {},
             isLogin: false,
+            userData:{}
         }
     },
     mutations: {
@@ -17,6 +18,10 @@ const store = createStore({
         userStage(state, flag) {
             state.isLogin = flag
             storeLocal(state)
+        },
+        signUserData(stage,data){
+            stage.userData=data
+            storeLocal(stage)
         }
     }
 })

@@ -209,6 +209,7 @@ export default {
       });
       if (result.data.code == 200) {
         this.$store.commit("userStage", true);
+        this.$store.commit("signUserData",result.data.data)
         this.$router.push("/profile");
       }
       console.log(result, "result");
