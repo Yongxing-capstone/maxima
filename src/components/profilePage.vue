@@ -61,6 +61,7 @@
       </el-form>
     </div>
     <!--end personalInfo-->
+    <el-button type="primary" @click="verify">verify as a driver</el-button>
   </div>
 </template>
 
@@ -142,6 +143,9 @@ export default {
   },
   mounted() {},
   methods: {
+    verify() {
+      this.$router.push("verify");
+    },
     async getPicture() {
       let _this = this;
       let body = { user_id: _this.userData.user_id };
@@ -219,5 +223,8 @@ export default {
 }
 #userRole {
   text-align: center;
+}
+.el-button {
+  margin-bottom: 27px;
 }
 </style>
