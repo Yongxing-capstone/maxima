@@ -9,6 +9,7 @@ import axios from "axios"
 import global from './assets/Global'
 import { AES_Encrypt, AES_Decrypt } from './assets/secret'
 import store from './assets/base'
+import { Vue3Geolocation } from 'vue3-geolocation'
 
 const app = createApp(App)
 app.use(router)
@@ -17,6 +18,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 app.use(store)
+app.use(Vue3Geolocation)
 
 axios.defaults.baseURL = global.serverAdrr
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';

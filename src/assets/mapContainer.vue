@@ -30,7 +30,9 @@
           </template>
         </el-input>
 
-        <el-button class="input" type="success"> Find a ride</el-button>
+        <el-button class="input" type="success" @click="getPosition">
+          Find a ride</el-button
+        >
         <el-button class="input" type="primary"> Post a ride</el-button>
       </div>
     </div>
@@ -51,10 +53,25 @@ export default {
         lat: 43.239238095759674,
         lng: -79.88803031533978,
       },
-      startPoint: "",
+      Departure: "",
       Destination: "",
       Location: Location,
     };
+  },
+  methods: {
+    getPosition() {
+      let _this = this;
+      let geoCode = "https://maps.googleapis.com/maps/api/geocode/json";
+      this.$axios({
+        method: "get",
+        url: geoCode,
+        params: {
+          address: _this.Departure,
+          key: _this.apikey,
+          region: "ca",
+        },
+      }).then((result) => console.log(result));
+    },
   },
 };
 </script>
